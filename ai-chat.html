@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chat - DigiBuddy | Digital Literacy Course</title>
+    <meta
+      name="description"
+      content="Get instant help with DigiBuddy, your AI assistant for digital literacy questions."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: "#2563eb",
+                600: "#2563eb",
+                700: "#1d4ed8",
+              },
+              accent: {
+                DEFAULT: "#14b8a6",
+              },
+              background: "#14161a",
+              card: "#181b20",
+              border: "#284150",
+              foreground: "#ebecf0",
+              "muted-foreground": "#939cae",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #14161a;
+        color: #ebecf0;
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      .btn-primary {
+        background-color: #2563eb;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 500;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-primary:hover {
+        background-color: #1d4ed8;
+      }
+      .btn-primary:disabled {
+        background-color: #374151;
+        cursor: not-allowed;
+      }
+      .card-hover {
+        transition: all 0.3s;
+      }
+      .card-hover:hover {
+        transform: scale(1.05);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      .gradient-text {
+        background: linear-gradient(to right, #2563eb, #14b8a6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <!-- Navigation -->
+    <nav
+      class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50 backdrop-blur-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center space-x-2 group">
+            <div
+              class="bg-primary p-1.5 rounded-lg group-hover:bg-primary/90 transition-colors"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M22 10v6"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"
+                />
+              </svg>
+            </div>
+            <span class="text-xl font-bold text-white">Digital Literacy</span>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+              >Home</a
+            >
+            <a
+              href="tutorials.html"
+              class="text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+              >Tutorials</a
+            >
+            <a
+              href="ai-chat.html"
+              class="text-sm font-medium text-primary border-b-2 border-primary pb-1"
+              >AI Chat</a
+            >
+            <a
+              href="feedback.html"
+              class="text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+              >Feedback</a
+            >
+          </div>
+
+          <!-- CTA Button -->
+          <div class="hidden md:flex items-center space-x-2">
+            <button
+              class="btn-primary"
+              onclick="window.location.href='tutorials.html'"
+            >
+              Get Started
+            </button>
+          </div>
+
+          <!-- Mobile menu button -->
+          <button class="md:hidden p-2" onclick="toggleMobileMenu()">
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden hidden">
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 bg-slate-800 border-t border-slate-700"
+          >
+            <a
+              href="index.html"
+              class="block px-3 py-2 text-slate-400 hover:bg-slate-700 rounded-md"
+              >Home</a
+            >
+            <a
+              href="tutorials.html"
+              class="block px-3 py-2 text-slate-400 hover:bg-slate-700 rounded-md"
+              >Tutorials</a
+            >
+            <a
+              href="ai-chat.html"
+              class="block px-3 py-2 text-primary bg-primary/10 rounded-md"
+              >AI Chat</a
+            >
+            <a
+              href="feedback.html"
+              class="block px-3 py-2 text-slate-400 hover:bg-slate-700 rounded-md"
+              >Feedback</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="py-16 bg-gradient-to-r from-primary/10 to-accent/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <div
+          class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto"
+        >
+          <svg
+            class="h-8 w-8 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+            />
+          </svg>
+        </div>
+        <h1 class="text-4xl lg:text-5xl font-bold text-white">
+          Get Instant Help with <span class="gradient-text">DigiBuddy</span>
+        </h1>
+        <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+          DigiBuddy is your personal assistant for all your digital literacy
+          questions. Whether you're stuck on a lesson or need help navigating
+          the platform, DigiBuddy is here to assist you 24/7.
+        </p>
+      </div>
+    </section>
+
+    <!-- Chat Interface -->
+    <section class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 mb-8">
+          <h2
+            class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+          >
+            <svg
+              class="h-5 w-5 text-primary"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              />
+            </svg>
+            Chat with DigiBuddy
+          </h2>
+
+          <div class="space-y-4">
+            <!-- Chat Messages Area -->
+            <div
+              id="chatMessages"
+              class="h-64 bg-slate-900/30 rounded-lg border-2 border-dashed border-slate-600 flex items-center justify-center"
+            >
+              <div class="text-center space-y-2">
+                <svg
+                  class="h-12 w-12 text-slate-400 mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
+                <p class="text-slate-400">
+                  Start a conversation with DigiBuddy
+                </p>
+                <p class="text-sm text-slate-500">
+                  Ask any question about digital literacy
+                </p>
+              </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="flex gap-2">
+              <input
+                id="chatInput"
+                type="text"
+                placeholder="Ask DigiBuddy a question..."
+                class="flex-1 bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-400 focus:border-primary focus:outline-none"
+                onkeypress="handleEnterKey(event)"
+              />
+              <button
+                id="sendButton"
+                class="btn-primary px-4 py-3"
+                onclick="sendMessage()"
+              >
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example Questions -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-bold text-white text-center">
+            Example questions you can ask:
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div
+              class="bg-slate-800 border border-slate-700 rounded-xl p-4 cursor-pointer card-hover"
+              onclick="askQuestion('How do I create an email account?')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-sm font-medium text-white hover:text-primary transition-colors"
+                  >
+                    How do I create an email account?
+                  </p>
+                  <span class="text-xs text-slate-400">Email</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-slate-800 border border-slate-700 rounded-xl p-4 cursor-pointer card-hover"
+              onclick="askQuestion('What is a strong password?')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-sm font-medium text-white hover:text-primary transition-colors"
+                  >
+                    What is a strong password?
+                  </p>
+                  <span class="text-xs text-slate-400">Security</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-slate-800 border border-slate-700 rounded-xl p-4 cursor-pointer card-hover"
+              onclick="askQuestion('How can I protect my privacy online?')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-sm font-medium text-white hover:text-primary transition-colors"
+                  >
+                    How can I protect my privacy online?
+                  </p>
+                  <span class="text-xs text-slate-400">Privacy</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-slate-800 border border-slate-700 rounded-xl p-4 cursor-pointer card-hover"
+              onclick="askQuestion('What are the best video call apps for staying in touch with family?')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-sm font-medium text-white hover:text-primary transition-colors"
+                  >
+                    What are the best video call apps for staying in touch with
+                    family?
+                  </p>
+                  <span class="text-xs text-slate-400">Communication</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-slate-800 border border-slate-700 rounded-xl p-4 cursor-pointer card-hover"
+              onclick="askQuestion('How do I use a search engine effectively?')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-sm font-medium text-white hover:text-primary transition-colors"
+                  >
+                    How do I use a search engine effectively?
+                  </p>
+                  <span class="text-xs text-slate-400">Internet</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-slate-800 border border-slate-700 rounded-xl p-4 cursor-pointer card-hover"
+              onclick="askQuestion('What are the risks of online shopping, and how can I stay safe?')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 5M7 13h10m0 0l1 7H8"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-sm font-medium text-white hover:text-primary transition-colors"
+                  >
+                    What are the risks of online shopping, and how can I stay
+                    safe?
+                  </p>
+                  <span class="text-xs text-slate-400">Shopping</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-slate-800 border border-slate-700 rounded-xl p-4 cursor-pointer card-hover"
+              onclick="askQuestion('How do I set up a social media account?')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-sm font-medium text-white hover:text-primary transition-colors"
+                  >
+                    How do I set up a social media account?
+                  </p>
+                  <span class="text-xs text-slate-400">Social Media</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-slate-800 border border-slate-700 rounded-xl p-4 cursor-pointer card-hover"
+              onclick="askQuestion('What are some tips for using my smartphone more efficiently?')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-sm font-medium text-white hover:text-primary transition-colors"
+                  >
+                    What are some tips for using my smartphone more efficiently?
+                  </p>
+                  <span class="text-xs text-slate-400">Mobile</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-slate-800 border border-slate-700 rounded-xl p-4 cursor-pointer card-hover"
+              onclick="askQuestion('How do I back up my important files?')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-sm font-medium text-white hover:text-primary transition-colors"
+                  >
+                    How do I back up my important files?
+                  </p>
+                  <span class="text-xs text-slate-400">Storage</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-slate-800 border border-slate-700 rounded-xl p-4 cursor-pointer card-hover"
+              onclick="askQuestion('What are the best apps for managing my finances?')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                    />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-sm font-medium text-white hover:text-primary transition-colors"
+                  >
+                    What are the best apps for managing my finances?
+                  </p>
+                  <span class="text-xs text-slate-400">Finance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Note -->
+        <div class="mt-12 text-center">
+          <div class="bg-primary/5 border border-primary/20 rounded-xl p-6">
+            <div class="flex items-center justify-center gap-2 mb-3">
+              <svg
+                class="h-5 w-5 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                />
+              </svg>
+              <span class="font-semibold text-primary">AI-Powered Support</span>
+            </div>
+            <p class="text-slate-400">
+              DigiBuddy uses advanced AI to provide accurate and helpful
+              responses to your digital literacy questions. Our AI is
+              specifically trained to help parents and seniors with
+              technology-related queries.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-800 border-t border-slate-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <div class="flex items-center gap-4">
+            <a
+              href="#"
+              class="text-slate-400 hover:text-primary transition-colors"
+              >About Us</a
+            >
+            <a
+              href="#"
+              class="text-slate-400 hover:text-primary transition-colors"
+              >Privacy Policy</a
+            >
+            <a
+              href="#"
+              class="text-slate-400 hover:text-primary transition-colors"
+              >Terms of Service</a
+            >
+            <a
+              href="#"
+              class="text-slate-400 hover:text-primary transition-colors"
+              >Contact Us</a
+            >
+          </div>
+          <p class="text-slate-400 text-sm">
+            ©2024 Digital Literacy Course. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.toggle("hidden");
+      }
+
+      function askQuestion(question) {
+        document.getElementById("chatInput").value = question;
+        sendMessage();
+      }
+
+      function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const message = input.value.trim();
+
+        if (!message) return;
+
+        // Add user message to chat
+        addMessageToChat("user", message);
+
+        // Show DigiBuddy response
+        setTimeout(() => {
+          const responses = [
+            `Great question! "${message}" - Let me help you with that. For ${message.toLowerCase()}, I recommend starting with our step-by-step tutorial that covers all the basics safely and securely.`,
+            `I'd be happy to help with "${message}". This is a common question from our learners. The key is to start slowly and practice in a safe environment. Would you like me to guide you through the process?`,
+            `Excellent question about "${message}". This is exactly what our Digital Literacy Course covers! I can provide you with practical, easy-to-follow guidance that's perfect for beginners.`,
+          ];
+
+          const randomResponse =
+            responses[Math.floor(Math.random() * responses.length)];
+          addMessageToChat("digibuddy", randomResponse);
+        }, 1000);
+
+        input.value = "";
+        updateSendButton();
+      }
+
+      function addMessageToChat(sender, message) {
+        const chatMessages = document.getElementById("chatMessages");
+
+        // If this is the first message, clear the placeholder
+        if (chatMessages.querySelector(".text-center")) {
+          chatMessages.innerHTML = "";
+          chatMessages.classList.remove(
+            "flex",
+            "items-center",
+            "justify-center",
+          );
+          chatMessages.classList.add("space-y-4", "p-4", "overflow-y-auto");
+        }
+
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `flex ${sender === "user" ? "justify-end" : "justify-start"}`;
+
+        const messageBubble = document.createElement("div");
+        messageBubble.className = `max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+          sender === "user"
+            ? "bg-primary text-white"
+            : "bg-slate-700 text-slate-100"
+        }`;
+
+        messageBubble.innerHTML = `
+                <div class="flex items-center gap-2 mb-1">
+                    ${
+                      sender === "user"
+                        ? '<span class="text-xs font-medium">You</span>'
+                        : '<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg><span class="text-xs font-medium">DigiBuddy</span>'
+                    }
+                </div>
+                <p class="text-sm">${message}</p>
+            `;
+
+        messageDiv.appendChild(messageBubble);
+        chatMessages.appendChild(messageDiv);
+
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function handleEnterKey(event) {
+        if (event.key === "Enter") {
+          sendMessage();
+        }
+      }
+
+      function updateSendButton() {
+        const input = document.getElementById("chatInput");
+        const button = document.getElementById("sendButton");
+
+        button.disabled = !input.value.trim();
+      }
+
+      // Add event listener for input changes
+      document
+        .getElementById("chatInput")
+        .addEventListener("input", updateSendButton);
+
+      // Initialize button state
+      updateSendButton();
+    </script>
+  </body>
+</html>

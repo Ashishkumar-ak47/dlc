@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorials - Digital Literacy Course</title>
+    <meta
+      name="description"
+      content="Browse our comprehensive library of digital literacy tutorials designed for parents and seniors."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: "#2563eb",
+                600: "#2563eb",
+                700: "#1d4ed8",
+              },
+              accent: {
+                DEFAULT: "#14b8a6",
+                400: "#2dd4bf",
+                500: "#14b8a6",
+              },
+              background: "#14161a",
+              card: "#181b20",
+              border: "#284150",
+              foreground: "#ebecf0",
+              "muted-foreground": "#939cae",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #14161a;
+        color: #ebecf0;
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      .btn-primary {
+        background-color: #2563eb;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 500;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-primary:hover {
+        background-color: #1d4ed8;
+      }
+      .card-hover {
+        transition: all 0.3s;
+      }
+      .card-hover:hover {
+        transform: scale(1.05);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      .gradient-text {
+        background: linear-gradient(to right, #2563eb, #14b8a6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <!-- Navigation -->
+    <nav
+      class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50 backdrop-blur-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center space-x-2 group">
+            <div
+              class="bg-primary p-1.5 rounded-lg group-hover:bg-primary/90 transition-colors"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M22 10v6"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"
+                />
+              </svg>
+            </div>
+            <span class="text-xl font-bold text-white">Digital Literacy</span>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+              >Home</a
+            >
+            <a
+              href="tutorials.html"
+              class="text-sm font-medium text-primary border-b-2 border-primary pb-1"
+              >Tutorials</a
+            >
+            <a
+              href="ai-chat.html"
+              class="text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+              >AI Chat</a
+            >
+            <a
+              href="feedback.html"
+              class="text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+              >Feedback</a
+            >
+          </div>
+
+          <!-- CTA Button -->
+          <div class="hidden md:flex items-center space-x-2">
+            <button
+              class="btn-primary"
+              onclick="window.location.href='tutorials.html'"
+            >
+              Get Started
+            </button>
+          </div>
+
+          <!-- Mobile menu button -->
+          <button class="md:hidden p-2" onclick="toggleMobileMenu()">
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden hidden">
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 bg-slate-800 border-t border-slate-700"
+          >
+            <a
+              href="index.html"
+              class="block px-3 py-2 text-slate-400 hover:bg-slate-700 rounded-md"
+              >Home</a
+            >
+            <a
+              href="tutorials.html"
+              class="block px-3 py-2 text-primary bg-primary/10 rounded-md"
+              >Tutorials</a
+            >
+            <a
+              href="ai-chat.html"
+              class="block px-3 py-2 text-slate-400 hover:bg-slate-700 rounded-md"
+              >AI Chat</a
+            >
+            <a
+              href="feedback.html"
+              class="block px-3 py-2 text-slate-400 hover:bg-slate-700 rounded-md"
+              >Feedback</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="py-16 bg-gradient-to-r from-primary/10 to-accent/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-6">
+          <h1 class="text-4xl lg:text-5xl font-bold text-white">
+            Digital Skills <span class="gradient-text">Tutorials</span>
+          </h1>
+          <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+            Step-by-step video tutorials designed specifically for parents and
+            seniors to master essential digital tools.
+          </p>
+
+          <!-- Search and Filter -->
+          <div class="max-w-2xl mx-auto space-y-4">
+            <div class="relative">
+              <svg
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+              <input
+                id="searchInput"
+                type="text"
+                placeholder="Search tutorials..."
+                class="pl-10 h-12 w-full text-lg bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-primary focus:outline-none"
+                onkeyup="filterTutorials()"
+              />
+            </div>
+
+            <div class="flex flex-wrap gap-2 justify-center">
+              <button
+                class="category-btn active px-4 py-2 rounded-full text-sm font-medium bg-primary text-white"
+                onclick="filterCategory('All')"
+              >
+                All
+              </button>
+              <button
+                class="category-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-600 text-slate-300 hover:bg-slate-700"
+                onclick="filterCategory('Communication')"
+              >
+                Communication
+              </button>
+              <button
+                class="category-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-600 text-slate-300 hover:bg-slate-700"
+                onclick="filterCategory('Payments')"
+              >
+                Payments
+              </button>
+              <button
+                class="category-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-600 text-slate-300 hover:bg-slate-700"
+                onclick="filterCategory('Navigation')"
+              >
+                Navigation
+              </button>
+              <button
+                class="category-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-600 text-slate-300 hover:bg-slate-700"
+                onclick="filterCategory('Entertainment')"
+              >
+                Entertainment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tutorials Grid -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8 flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-white">All Tutorials</h2>
+          <div class="flex items-center gap-2 text-sm text-slate-400">
+            <span id="tutorialCount">12 tutorials found</span>
+          </div>
+        </div>
+
+        <div
+          id="tutorialsGrid"
+          class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <!-- Tutorial Cards -->
+          <div
+            class="tutorial-card bg-slate-800 border border-slate-700 rounded-xl overflow-hidden card-hover"
+            data-category="Communication"
+            data-title="WhatsApp Messaging"
+          >
+            <div
+              class="relative h-48 bg-gradient-to-br from-green-400 to-green-500 flex items-center justify-center"
+            >
+              <div class="p-4 rounded-xl bg-white/20 backdrop-blur-sm">
+                <svg
+                  class="h-12 w-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
+              </div>
+              <div class="absolute top-4 right-4">
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full"
+                  >Beginner</span
+                >
+              </div>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-lg font-semibold text-white">
+                WhatsApp Messaging
+              </h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Learn to send messages, photos, and voice notes to family and
+                friends using WhatsApp.
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-slate-400"
+              >
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>15 min</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <span>4.8</span>
+                </div>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors"
+                onclick="window.location.href='tutorial-whatsapp.html'"
+              >
+                Start Tutorial
+                <svg
+                  class="ml-2 h-4 w-4 inline"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="tutorial-card bg-slate-800 border border-slate-700 rounded-xl overflow-hidden card-hover"
+            data-category="Payments"
+            data-title="PayPal Payments"
+          >
+            <div
+              class="relative h-48 bg-gradient-to-br from-blue-400 to-blue-500 flex items-center justify-center"
+            >
+              <div class="p-4 rounded-xl bg-white/20 backdrop-blur-sm">
+                <svg
+                  class="h-12 w-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                  />
+                </svg>
+              </div>
+              <div class="absolute top-4 right-4">
+                <span
+                  class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full"
+                  >Intermediate</span
+                >
+              </div>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-lg font-semibold text-white">PayPal Payments</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Safely send and receive money online using PayPal for secure
+                digital transactions.
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-slate-400"
+              >
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>20 min</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <span>4.9</span>
+                </div>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors"
+                onclick="alert('PayPal Payments tutorial coming soon! For now, try the WhatsApp tutorial to see how video tutorials work.')"
+              >
+                Start Tutorial
+                <svg
+                  class="ml-2 h-4 w-4 inline"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="tutorial-card bg-slate-800 border border-slate-700 rounded-xl overflow-hidden card-hover"
+            data-category="Navigation"
+            data-title="Google Maps"
+          >
+            <div
+              class="relative h-48 bg-gradient-to-br from-red-400 to-red-500 flex items-center justify-center"
+            >
+              <div class="p-4 rounded-xl bg-white/20 backdrop-blur-sm">
+                <svg
+                  class="h-12 w-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+              <div class="absolute top-4 right-4">
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full"
+                  >Beginner</span
+                >
+              </div>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-lg font-semibold text-white">
+                Google Maps Navigation
+              </h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Find directions, locate places, and navigate using Google Maps
+                on your smartphone.
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-slate-400"
+              >
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>12 min</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <span>4.7</span>
+                </div>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors"
+                onclick="alert('Google Maps tutorial coming soon! For now, try the WhatsApp tutorial to see how video tutorials work.')"
+              >
+                Start Tutorial
+                <svg
+                  class="ml-2 h-4 w-4 inline"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="tutorial-card bg-slate-800 border border-slate-700 rounded-xl overflow-hidden card-hover"
+            data-category="Communication"
+            data-title="Zoom Video Calls"
+          >
+            <div
+              class="relative h-48 bg-gradient-to-br from-purple-400 to-purple-500 flex items-center justify-center"
+            >
+              <div class="p-4 rounded-xl bg-white/20 backdrop-blur-sm">
+                <svg
+                  class="h-12 w-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <div class="absolute top-4 right-4">
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full"
+                  >Beginner</span
+                >
+              </div>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-lg font-semibold text-white">Zoom Video Calls</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Connect with loved ones through video calls using Zoom for
+                virtual meetings.
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-slate-400"
+              >
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>18 min</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <span>4.6</span>
+                </div>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors"
+                onclick="alert('Zoom Video Calls tutorial coming soon! Try the WhatsApp tutorial to see how our video tutorials work.')"
+              >
+                Start Tutorial
+                <svg
+                  class="ml-2 h-4 w-4 inline"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="tutorial-card bg-slate-800 border border-slate-700 rounded-xl overflow-hidden card-hover"
+            data-category="Entertainment"
+            data-title="Spotify Music"
+          >
+            <div
+              class="relative h-48 bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center"
+            >
+              <div class="p-4 rounded-xl bg-white/20 backdrop-blur-sm">
+                <svg
+                  class="h-12 w-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                  />
+                </svg>
+              </div>
+              <div class="absolute top-4 right-4">
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full"
+                  >Beginner</span
+                >
+              </div>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-lg font-semibold text-white">
+                Spotify Music Streaming
+              </h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Discover and listen to music, podcasts, and audiobooks on
+                Spotify.
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-slate-400"
+              >
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>20 min</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <span>4.6</span>
+                </div>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors"
+                onclick="alert('Spotify tutorial coming soon! Try the WhatsApp tutorial to see how our video tutorials work.')"
+              >
+                Start Tutorial
+                <svg
+                  class="ml-2 h-4 w-4 inline"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="tutorial-card bg-slate-800 border border-slate-700 rounded-xl overflow-hidden card-hover"
+            data-category="Entertainment"
+            data-title="iPhone Camera"
+          >
+            <div
+              class="relative h-48 bg-gradient-to-br from-gray-400 to-gray-500 flex items-center justify-center"
+            >
+              <div class="p-4 rounded-xl bg-white/20 backdrop-blur-sm">
+                <svg
+                  class="h-12 w-12 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+              <div class="absolute top-4 right-4">
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full"
+                  >Beginner</span
+                >
+              </div>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-lg font-semibold text-white">
+                iPhone Camera & Photos
+              </h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Take better photos and organize your photo library on iPhone.
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-slate-400"
+              >
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>14 min</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <svg
+                    class="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <span>4.6</span>
+                </div>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors"
+                onclick="alert('iPhone Camera tutorial coming soon! Try the WhatsApp tutorial to see how our video tutorials work.')"
+              >
+                Start Tutorial
+                <svg
+                  class="ml-2 h-4 w-4 inline"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Help Section -->
+    <section class="py-16 bg-slate-800/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-8">
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-4">
+              Need Additional Help?
+            </h2>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+              Our AI assistant DigiBuddy is here to answer any questions you
+              might have about these tutorials.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              class="btn-primary"
+              onclick="window.location.href='ai-chat.html'"
+            >
+              Chat with DigiBuddy
+              <svg
+                class="ml-2 h-5 w-5 inline"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
+              </svg>
+            </button>
+            <button
+              class="border border-slate-600 text-slate-300 hover:bg-slate-700 px-6 py-3 rounded-lg transition-colors"
+              onclick="window.location.href='feedback.html'"
+            >
+              Contact Support
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let selectedCategory = "All";
+
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.toggle("hidden");
+      }
+
+      function filterCategory(category) {
+        selectedCategory = category;
+
+        // Update button states
+        document.querySelectorAll(".category-btn").forEach((btn) => {
+          btn.classList.remove("active", "bg-primary", "text-white");
+          btn.classList.add("border", "border-slate-600", "text-slate-300");
+        });
+
+        event.target.classList.add("active", "bg-primary", "text-white");
+        event.target.classList.remove(
+          "border",
+          "border-slate-600",
+          "text-slate-300",
+        );
+
+        filterTutorials();
+      }
+
+      function filterTutorials() {
+        const searchQuery = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const tutorialCards = document.querySelectorAll(".tutorial-card");
+        let visibleCount = 0;
+
+        tutorialCards.forEach((card) => {
+          const title = card.dataset.title.toLowerCase();
+          const category = card.dataset.category;
+
+          const matchesSearch = title.includes(searchQuery);
+          const matchesCategory =
+            selectedCategory === "All" || category === selectedCategory;
+
+          if (matchesSearch && matchesCategory) {
+            card.style.display = "block";
+            visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        document.getElementById("tutorialCount").textContent =
+          `${visibleCount} tutorial${visibleCount !== 1 ? "s" : ""} found`;
+      }
+
+      function startTutorial(title, duration) {
+        alert(
+          `Starting "${title}" tutorial! Duration: ${duration}. In a real implementation, this would open the video tutorial.`,
+        );
+      }
+    </script>
+  </body>
+</html>

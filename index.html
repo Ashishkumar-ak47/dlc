@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Literacy Course - Empowering Digital Skills</title>
+    <meta
+      name="description"
+      content="Learn essential digital skills with our easy-to-follow tutorials. Perfect for parents and seniors."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: "#2563eb",
+                50: "#eff6ff",
+                100: "#dbeafe",
+                200: "#bfdbfe",
+                300: "#93c5fd",
+                400: "#60a5fa",
+                500: "#3b82f6",
+                600: "#2563eb",
+                700: "#1d4ed8",
+                800: "#1e40af",
+                900: "#1e3a8a",
+              },
+              accent: {
+                DEFAULT: "#14b8a6",
+                400: "#2dd4bf",
+                500: "#14b8a6",
+              },
+              warm: {
+                DEFAULT: "#fb923c",
+                300: "#fdba74",
+                400: "#fb923c",
+              },
+              background: "#14161a",
+              card: "#181b20",
+              border: "#284150",
+              foreground: "#ebecf0",
+              "muted-foreground": "#939cae",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #14161a;
+        color: #ebecf0;
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      .btn-primary {
+        background-color: #2563eb;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 500;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-primary:hover {
+        background-color: #1d4ed8;
+      }
+      .card-hover {
+        transition: all 0.3s;
+      }
+      .card-hover:hover {
+        transform: scale(1.05);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      .gradient-text {
+        background: linear-gradient(to right, #2563eb, #14b8a6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <!-- Navigation -->
+    <nav
+      class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50 backdrop-blur-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center space-x-2 group">
+            <div
+              class="bg-primary p-1.5 rounded-lg group-hover:bg-primary/90 transition-colors"
+            >
+              <svg
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M22 10v6"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"
+                />
+              </svg>
+            </div>
+            <span class="text-xl font-bold text-white">Digital Literacy</span>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="text-sm font-medium text-primary border-b-2 border-primary pb-1"
+              >Home</a
+            >
+            <a
+              href="tutorials.html"
+              class="text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+              >Tutorials</a
+            >
+            <a
+              href="ai-chat.html"
+              class="text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+              >AI Chat</a
+            >
+            <a
+              href="feedback.html"
+              class="text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+              >Feedback</a
+            >
+          </div>
+
+          <!-- CTA Button -->
+          <div class="hidden md:flex items-center space-x-2">
+            <button
+              class="btn-primary"
+              onclick="window.location.href='tutorials.html'"
+            >
+              Get Started
+            </button>
+          </div>
+
+          <!-- Mobile menu button -->
+          <button class="md:hidden p-2" onclick="toggleMobileMenu()">
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden hidden">
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 bg-slate-800 border-t border-slate-700"
+          >
+            <a
+              href="index.html"
+              class="block px-3 py-2 text-primary bg-primary/10 rounded-md"
+              >Home</a
+            >
+            <a
+              href="tutorials.html"
+              class="block px-3 py-2 text-slate-400 hover:bg-slate-700 rounded-md"
+              >Tutorials</a
+            >
+            <a
+              href="ai-chat.html"
+              class="block px-3 py-2 text-slate-400 hover:bg-slate-700 rounded-md"
+              >AI Chat</a
+            >
+            <a
+              href="feedback.html"
+              class="block px-3 py-2 text-slate-400 hover:bg-slate-700 rounded-md"
+              >Feedback</a
+            >
+            <div class="px-3 pt-2">
+              <button
+                class="btn-primary w-full"
+                onclick="window.location.href='tutorials.html'"
+              >
+                Get Started
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8">
+            <div class="space-y-4">
+              <h1 class="text-4xl lg:text-6xl font-bold leading-tight">
+                <span class="text-white">Empowering You in the</span><br />
+                <span class="gradient-text">Digital World</span>
+              </h1>
+              <p class="text-xl text-slate-400 leading-relaxed max-w-2xl">
+                Learn essential digital skills with our easy-to-follow
+                tutorials. Perfect for parents and seniors.
+              </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                class="btn-primary text-lg px-8 py-4"
+                onclick="window.location.href='tutorials.html'"
+              >
+                Explore Courses
+                <svg
+                  class="ml-2 h-5 w-5 inline"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </button>
+              <button
+                class="border border-slate-600 text-white px-8 py-4 rounded-lg text-lg hover:bg-slate-800 transition-colors"
+                onclick="alert('Demo video would play here!')"
+              >
+                Watch Demo
+              </button>
+            </div>
+
+            <div class="flex items-center gap-8 pt-8">
+              <div class="flex items-center gap-2">
+                <svg
+                  class="h-6 w-6 text-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+                <span class="text-sm text-slate-400">Safe & Secure</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  class="h-6 w-6 text-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span class="text-sm text-slate-400">Learn at Your Pace</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Illustration -->
+          <div class="relative">
+            <div
+              class="bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl p-8 backdrop-blur-sm border border-slate-700"
+            >
+              <div
+                class="bg-gradient-to-br from-accent to-primary rounded-2xl p-6 text-center"
+              >
+                <div class="space-y-4">
+                  <div class="flex justify-center space-x-4">
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm"
+                    >
+                      <svg
+                        class="h-8 w-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm"
+                    >
+                      <svg
+                        class="h-8 w-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm"
+                    >
+                      <svg
+                        class="h-8 w-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white">
+                    Empowering Digital Literacy!
+                  </h3>
+                  <p class="text-white/90">
+                    Learn digital tools easily with our comprehensive tutorials
+                    and AI-powered assistance. Perfect for parents and seniors.
+                  </p>
+                  <button
+                    class="bg-white text-primary hover:bg-white/90 font-semibold px-6 py-3 rounded-lg transition-colors"
+                    onclick="window.location.href='tutorials.html'"
+                  >
+                    Get Started
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Courses Section -->
+    <section class="py-16 bg-slate-800/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+            Popular Courses
+          </h2>
+          <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+            Start with these essential digital skills that will help you stay
+            connected and manage your daily tasks online.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Course Card 1 -->
+          <div
+            class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden card-hover cursor-pointer"
+            onclick="window.location.href='tutorial-whatsapp.html'"
+          >
+            <div
+              class="bg-gradient-to-br from-warm-300 to-warm-400 h-32 flex items-center justify-center"
+            >
+              <div class="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
+                <svg
+                  class="h-8 w-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-white mb-2">
+                Master Messaging Apps
+              </h3>
+              <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                Learn to use messaging apps like ChatApp to stay connected with
+                family and friends.
+              </p>
+              <button
+                class="w-full border border-slate-600 text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-colors px-4 py-2 rounded-lg"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+
+          <!-- Course Card 2 -->
+          <div
+            class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden card-hover cursor-pointer"
+            onclick="courseAlert('Secure Digital Payments')"
+          >
+            <div
+              class="bg-gradient-to-br from-accent-400 to-accent-500 h-32 flex items-center justify-center"
+            >
+              <div class="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
+                <svg
+                  class="h-8 w-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-white mb-2">
+                Secure Digital Payments
+              </h3>
+              <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                Understand and use digital payment platforms like PayPal safely
+                and efficiently.
+              </p>
+              <button
+                class="w-full border border-slate-600 text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-colors px-4 py-2 rounded-lg"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+
+          <!-- Course Card 3 -->
+          <div
+            class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden card-hover cursor-pointer"
+            onclick="courseAlert('Navigate with Maps')"
+          >
+            <div
+              class="bg-gradient-to-br from-warm-300 to-warm-400 h-32 flex items-center justify-center"
+            >
+              <div class="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
+                <svg
+                  class="h-8 w-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-white mb-2">
+                Navigate with Maps
+              </h3>
+              <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                Discover how to use map applications like World Maps to find
+                places and get directions.
+              </p>
+              <button
+                class="w-full border border-slate-600 text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-colors px-4 py-2 rounded-lg"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="bg-gradient-to-r from-primary to-accent rounded-3xl p-8 lg:p-12 text-center"
+        >
+          <div class="max-w-3xl mx-auto space-y-6">
+            <h2 class="text-3xl lg:text-4xl font-bold text-white">
+              Ready to Start Your Digital Journey?
+            </h2>
+            <p class="text-xl text-white/90">
+              Join thousands of learners who have successfully mastered digital
+              tools with our help.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                class="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4 rounded-lg font-semibold transition-colors"
+                onclick="window.location.href='tutorials.html'"
+              >
+                Start Learning Today
+                <svg
+                  class="ml-2 h-5 w-5 inline"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </button>
+              <button
+                class="border border-white text-white hover:bg-white/10 text-lg px-8 py-4 rounded-lg transition-colors"
+                onclick="window.location.href='ai-chat.html'"
+              >
+                Contact Support
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 border-t border-slate-700 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-white">Digital Literacy</h3>
+            <p class="text-slate-400">
+              Empowering parents and seniors with essential digital skills.
+            </p>
+          </div>
+          <div class="space-y-4">
+            <h4 class="font-semibold text-white">Links</h4>
+            <div class="space-y-2">
+              <a
+                href="#"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >About Us</a
+              >
+              <a
+                href="#"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >Contact</a
+              >
+              <a
+                href="#"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >Privacy Policy</a
+              >
+              <a
+                href="#"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >Terms of Service</a
+              >
+            </div>
+          </div>
+          <div class="space-y-4">
+            <h4 class="font-semibold text-white">Courses</h4>
+            <div class="space-y-2">
+              <a
+                href="tutorials.html"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >Messaging Apps</a
+              >
+              <a
+                href="tutorials.html"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >Digital Payments</a
+              >
+              <a
+                href="tutorials.html"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >Navigation</a
+              >
+              <a
+                href="tutorials.html"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >Video Calling</a
+              >
+            </div>
+          </div>
+          <div class="space-y-4">
+            <h4 class="font-semibold text-white">Support</h4>
+            <div class="space-y-2">
+              <a
+                href="#"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >Help Center</a
+              >
+              <a
+                href="ai-chat.html"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >AI Chat</a
+              >
+              <a
+                href="feedback.html"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >Feedback</a
+              >
+              <a
+                href="#"
+                class="block text-slate-400 hover:text-primary transition-colors"
+                >Community</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-slate-700 mt-8 pt-8 text-center">
+          <p class="text-slate-400">
+            ©2024 Digital Literacy. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.toggle("hidden");
+      }
+
+      function courseAlert(courseName) {
+        alert(
+          `Starting "${courseName}" tutorial. In a real implementation, this would open the course content.`,
+        );
+      }
+    </script>
+  </body>
+</html>
